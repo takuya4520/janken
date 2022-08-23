@@ -11,25 +11,36 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: jankenPage(),
+    return const MaterialApp(
+      /// 全体的なテーマーカラーを緑にしたい場合は
+      /// ThemeData を編集してもよいです。
+      /// primarySwatch にテーマカラーにしたい色を与えます。
+      /// するとAppBarやElevatedButtonの色が変化します。
+      // theme: ThemeData(
+      //   primarySwatch: Colors.green,
+      // ),
+      home: JankenPage(),
     );
   }
 }
 
-class jankenPage extends StatefulWidget {
-  const jankenPage({Key? key}) : super(key: key);
+/// class名はアッパーキャメルケースにしましょう。
+/// 先頭が大文字、単語の区切りも大文字です。
+class JankenPage extends StatefulWidget {
+  const JankenPage({Key? key}) : super(key: key);
 
   @override
-  State<jankenPage> createState() => _jankenPageState();
+  State<JankenPage> createState() => _JankenPageState();
 }
 
-class _jankenPageState extends State<jankenPage> {
+class _JankenPageState extends State<JankenPage> {
   String myHand = '✊';
   String computerHand = '✊';
   String result = '引き分け';
 
   int gameCounter = 0;
+
+  /// winCounterとloseCounterで勝敗をカウントしていくのgoodです。
   int winCounter = 0;
   int loseCounter = 0;
 
@@ -37,7 +48,7 @@ class _jankenPageState extends State<jankenPage> {
     if (gameCounter < 5) {
       myHand = selectedHand;
       generateComputerHand();
-      jadge();
+      judge();
       gameCounter++;
     }
     setState(() {});
@@ -61,7 +72,8 @@ class _jankenPageState extends State<jankenPage> {
     }
   }
 
-  void jadge() {
+  /// 単純な綴り間違えなので修正しました。
+  void judge() {
     if (computerHand == myHand) {
       result = '引き分け';
     } else if (myHand == '✊' && computerHand == '✌️' ||
@@ -81,7 +93,7 @@ class _jankenPageState extends State<jankenPage> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'じゃんけん',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
@@ -92,8 +104,8 @@ class _jankenPageState extends State<jankenPage> {
           children: [
             if (gameCounter < 5)
               Text(
-                '勝負した回数: ${gameCounter}/5',
-                style: TextStyle(
+                '勝負した回数: $gameCounter/5',
+                style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
@@ -102,19 +114,19 @@ class _jankenPageState extends State<jankenPage> {
               Column(
                 children: [
                   if (winCounter == loseCounter)
-                    Text(
+                    const Text(
                       '結果：引き分け！！',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     )
                   else if (winCounter < loseCounter)
-                    Text(
+                    const Text(
                       '結果：あなたの負け！',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                     )
                   else
-                    Text(
+                    const Text(
                       '結果：あなたの勝ち！',
                       style:
                           TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
@@ -122,6 +134,8 @@ class _jankenPageState extends State<jankenPage> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.green[200]),
                     onPressed: () {
+                      /// この処理は reset という関数を作ってそこにまとめるとよいです。
+                      /// 名前がついているだけでコードが読みやすくなります。
                       myHand = '✊';
                       computerHand = '✊';
                       gameCounter = 0;
@@ -129,7 +143,7 @@ class _jankenPageState extends State<jankenPage> {
                       loseCounter = 0;
                       setState(() {});
                     },
-                    child: Text(
+                    child: const Text(
                       'reset',
                       style: TextStyle(
                         color: Colors.black,
@@ -139,8 +153,8 @@ class _jankenPageState extends State<jankenPage> {
                     ),
                   ),
                   Text(
-                    '勝負した回数: ${gameCounter}/5',
-                    style: TextStyle(
+                    '勝負した回数: $gameCounter/5',
+                    style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
                     ),
@@ -151,53 +165,55 @@ class _jankenPageState extends State<jankenPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  '勝ち：${winCounter}',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  '勝ち：$winCounter',
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  '負け：${loseCounter}',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                  '負け：$loseCounter',
+                  style: const TextStyle(
+                      fontSize: 32, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             Column(
               children: [
                 Text(
                   computerHand,
-                  style: TextStyle(fontSize: 40),
+                  style: const TextStyle(fontSize: 40),
                 ),
-                Text(
+                const Text(
                   '相手',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Text(
-              '${result}',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              result,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Column(
               children: [
                 Text(
                   myHand,
-                  style: TextStyle(fontSize: 40),
+                  style: const TextStyle(fontSize: 40),
                 ),
-                Text(
+                const Text(
                   '自分',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             Row(
@@ -208,7 +224,7 @@ class _jankenPageState extends State<jankenPage> {
                   onPressed: () {
                     selectHand('✊');
                   },
-                  child: Text(
+                  child: const Text(
                     '✊',
                     style: TextStyle(fontSize: 28),
                   ),
@@ -218,7 +234,7 @@ class _jankenPageState extends State<jankenPage> {
                   onPressed: () {
                     selectHand('✌️');
                   },
-                  child: Text(
+                  child: const Text(
                     '✌️',
                     style: TextStyle(fontSize: 32),
                   ),
@@ -229,7 +245,7 @@ class _jankenPageState extends State<jankenPage> {
                   onPressed: () {
                     selectHand('✋');
                   },
-                  child: Text(
+                  child: const Text(
                     '✋',
                     style: TextStyle(fontSize: 32),
                   ),
