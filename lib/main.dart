@@ -12,19 +12,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: jankenPage(),
+      home: JankenPage(),
     );
   }
 }
 
-class jankenPage extends StatefulWidget {
-  const jankenPage({Key? key}) : super(key: key);
+/// class名はアッパーキャメルケースにしましょう。
+/// 先頭が大文字、単語の区切りも大文字です。
+class JankenPage extends StatefulWidget {
+  const JankenPage({Key? key}) : super(key: key);
 
   @override
-  State<jankenPage> createState() => _jankenPageState();
+  State<JankenPage> createState() => _JankenPageState();
 }
 
-class _jankenPageState extends State<jankenPage> {
+class _JankenPageState extends State<JankenPage> {
   String myHand = '✊';
   String computerHand = '✊';
   String result = '引き分け';
