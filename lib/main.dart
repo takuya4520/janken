@@ -39,7 +39,7 @@ class _JankenPageState extends State<JankenPage> {
     if (gameCounter < 5) {
       myHand = selectedHand;
       generateComputerHand();
-      jadge();
+      judge();
       gameCounter++;
     }
     setState(() {});
@@ -63,7 +63,7 @@ class _JankenPageState extends State<JankenPage> {
     }
   }
 
-  void jadge() {
+  void judge() {
     if (computerHand == myHand) {
       result = '引き分け';
     } else if (myHand == '✊' && computerHand == '✌️' ||
