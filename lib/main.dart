@@ -82,7 +82,7 @@ class _jankenPageState extends State<jankenPage> {
         backgroundColor: Colors.green,
         centerTitle: true,
         title: Text(
-          'じゃんけん',
+          'takuyajanken',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
