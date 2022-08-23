@@ -125,6 +125,8 @@ class _JankenPageState extends State<JankenPage> {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(primary: Colors.green[200]),
                     onPressed: () {
+                      /// この処理は reset という関数を作ってそこにまとめるとよいです。
+                      /// 名前がついているだけでコードが読みやすくなります。
                       myHand = '✊';
                       computerHand = '✊';
                       gameCounter = 0;
