@@ -63,6 +63,7 @@ class _JankenPageState extends State<JankenPage> {
     }
   }
 
+  /// 単純な綴り間違えなので修正しました。
   void judge() {
     if (computerHand == myHand) {
       result = '引き分け';
