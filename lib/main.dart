@@ -12,6 +12,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      /// 全体的なテーマーカラーを緑にしたい場合は
+      /// ThemeData を編集してもよいです。
+      /// primarySwatch にテーマカラーにしたい色を与えます。
+      /// するとAppBarやElevatedButtonの色が変化します。
+      // theme: ThemeData(
+      //   primarySwatch: Colors.green,
+      // ),
       home: JankenPage(),
     );
   }
@@ -32,6 +39,8 @@ class _JankenPageState extends State<JankenPage> {
   String result = '引き分け';
 
   int gameCounter = 0;
+
+  /// winCounterとloseCounterで勝敗をカウントしていくのgoodです。
   int winCounter = 0;
   int loseCounter = 0;
 
